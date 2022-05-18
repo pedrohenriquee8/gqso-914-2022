@@ -8,3 +8,5 @@ Autores:
 * Ewerton Barboza
 * Pedro Henrique
 * Pedro Vinícius
+
+Nesse momento, será feita a criação de um novo ramo e sua utilização!
