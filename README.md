@@ -8,3 +8,5 @@ Autores:
 * Ewerton Barboza
 * Pedro Henrique
 * Pedro Vinícius
+
+Nessa branch o intuito é estudar a criação de ramos!
