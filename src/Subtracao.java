@@ -12,7 +12,7 @@ public class subtracao implements HttpHandler {
         try {
             String[] partes = exchange.getRequestURI().getPath().split("/");
             List<Double> numeros = new ArrayList<Double>();
-            double subtracao = 0;
+            double subtracao = numeros.get(0);
 
             
             if(partes[2].equals(null)) {
@@ -37,7 +37,7 @@ public class subtracao implements HttpHandler {
             } 
 
             
-            for(int i = 0; i < numeros.size(); i++) {
+            for(int i = 1; i < numeros.size(); i++) {
                 subtracao -= numeros.get(i);
             }
 
