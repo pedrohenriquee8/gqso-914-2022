@@ -6,14 +6,12 @@ import java.util.List;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
-public class subtracao implements HttpHandler {
+public class Subtracao implements HttpHandler {
     @Override
     public void handle(HttpExchange exchange) throws IOException {
         try {
             String[] partes = exchange.getRequestURI().getPath().split("/");
             List<Double> numeros = new ArrayList<Double>();
-            double subtracao = numeros.get(0);
-
             
             if(partes[2].equals(null)) {
                 byte[] resposta = "Entrada inválida".getBytes();
@@ -21,8 +19,7 @@ public class subtracao implements HttpHandler {
                 exchange.getResponseBody().write(resposta);
                 return;
             }
-
-             
+         
             for(int i = 2; i < partes.length; i++) {
                 boolean isNumeric = checkNum(partes[i]);
                 if(isNumeric) {
@@ -36,7 +33,7 @@ public class subtracao implements HttpHandler {
                 }
             } 
 
-            
+            double subtracao = numeros.get(0);
             for(int i = 1; i < numeros.size(); i++) {
                 subtracao -= numeros.get(i);
             }
