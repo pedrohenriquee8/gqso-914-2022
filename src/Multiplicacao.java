@@ -12,7 +12,7 @@ public class Multiplicacao implements HttpHandler {
         try {
             String[] partes = exchange.getRequestURI().getPath().split("/");
             List<Double> numeros = new ArrayList<Double>();
-            double multiplicacao = 0;
+            double multiplicacao = 1;
 
             if(partes[2].equals(null)) {
                 byte[] resposta = "Entrada inválida".getBytes();
