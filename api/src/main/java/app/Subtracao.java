@@ -3,14 +3,14 @@ package app;
 import java.util.Arrays;
 import io.jooby.annotations.*;
 
-@Path("/soma/{nums}*")
-public class Soma {
+@Path("/subtracao/{nums}*")
+public class Subtracao {
 
     @GET
-    public double calculoSoma(@PathParam String nums) {
+    public double calculoSubtracao(@PathParam String nums) {
         return Arrays.stream(nums.split("/"))
                 .map(num -> Double.parseDouble(num))
-                .reduce(0.0, (a, b) -> a + b);
+                .reduce(0.0, (a, b) -> a - b);
     }
 
 }
