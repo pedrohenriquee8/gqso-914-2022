@@ -5,7 +5,7 @@ import io.jooby.Jooby;
 public class App extends Jooby {
 
   {
-    get("/", ctx -> "Welcome to Jooby!");
+    mvc(new Index());
   }
 
   public static void main(final String[] args) {
