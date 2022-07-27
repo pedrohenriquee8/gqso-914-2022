@@ -23,7 +23,9 @@ public class IntegrationTest {
         .build();
 
     try (Response rsp = client.newCall(req).execute()) {
-      assertEquals("Welcome to Jooby!", rsp.body().string());
+      assertEquals(
+          "Bem-vindo(a) a calculadora API, desenvolvida pelos discentes: Ewerton Barboza, Pedro Henrique e Pedro Vinícius.",
+          rsp.body().string());
       assertEquals(StatusCode.OK.value(), rsp.code());
     }
   }
