@@ -13,9 +13,12 @@ public class Subtracao {
                 .map(num -> Double.parseDouble(num))
                 .reduce((double) 0, Double::max);
 
+        System.out.println(maxDouble);
         return Arrays.stream(nums.split("/"))
                 .map(num -> Double.parseDouble(num))
-                .reduce(maxDouble, (a, b) -> a - b);
+                .reduce(0.0, (a, b) -> (-a) - b);
+        
     }
 
 }
+
