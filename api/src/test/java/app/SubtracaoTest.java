@@ -13,8 +13,8 @@ public class SubtracaoTest {
     @Test
     public void testeSubtracao() {
         MockRouter router = new MockRouter(new App());
-        router.get("/subtracao/5/5/5", rsp -> {
-            assertEquals(-5.0, rsp.value());
+        router.get("/subtracao/5/5", rsp -> {
+            assertEquals(0.0, rsp.value());
             assertEquals(StatusCode.OK, rsp.getStatusCode());
         });
     }
