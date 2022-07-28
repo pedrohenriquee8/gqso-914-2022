@@ -8,22 +8,22 @@ import org.junit.jupiter.api.Test;
 import io.jooby.MockRouter;
 import io.jooby.StatusCode;
 
-public class SubtracaoTest {
+public class SomaTest {
 
     @Test
-    public void testeSubtracao() {
+    public void testeSoma() {
         MockRouter router = new MockRouter(new App());
-        router.get("/subtracao/5/5", rsp -> {
-            assertEquals(0.0, rsp.value());
+        router.get("/soma/5/5/5", rsp -> {
+            assertEquals(15.0, rsp.value());
             assertEquals(StatusCode.OK, rsp.getStatusCode());
         });
     }
 
     @Test
-    public void testeSubtracaoString() {
+    public void testeSomaString() {
         MockRouter router = new MockRouter(new App());
         assertThrows(NumberFormatException.class, () -> {
-            router.get("/subtracao/abc", rsp -> {
+            router.get("/soma/abc", rsp -> {
             });
         });
     }
