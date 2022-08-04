@@ -9,16 +9,10 @@ public class Subtracao {
 
     @GET
     public double calculoSubtracao(@PathParam String nums) {
-        double maxDouble = Arrays.stream(nums.split("/"))
-                .map(num -> Double.parseDouble(num))
-                .reduce((double) 0, Double::max);
-
-        System.out.println(maxDouble);
+        System.out.println(nums);
         return Arrays.stream(nums.split("/"))
                 .map(num -> Double.parseDouble(num))
                 .reduce(0.0, (a, b) -> (-a) - b);
-        
     }
 
 }
-

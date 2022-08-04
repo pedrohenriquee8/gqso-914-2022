@@ -1,0 +1,6 @@
+app/Subtracao$Module.class
+app/Subtracao.class
+app/App.class
+META-INF/services/io.jooby.MvcFactory
+app/Index$Module.class
+app/Index.class
