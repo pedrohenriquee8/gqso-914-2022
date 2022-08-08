@@ -1,6 +1,6 @@
 package app;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 
 import io.jooby.annotations.*;
 
@@ -9,10 +9,19 @@ public class Subtracao {
 
     @GET
     public double calculoSubtracao(@PathParam String nums) {
-        System.out.println(nums);
-        return Arrays.stream(nums.split("/"))
-                .map(num -> Double.parseDouble(num))
-                .reduce(0.0, (a, b) -> (-a) - b);
+        String[] numsParam = nums.split("/");
+        ArrayList<Double> numsDouble = new ArrayList<>();
+        double parametroSoma = 0;
+
+        for(int i = 0; i < numsParam.length; i++) {
+            numsDouble.add(Double.parseDouble(numsParam[i]));
+        }
+
+        for(int i = 1; i < numsDouble.size(); i++) {
+            parametroSoma = parametroSoma + numsDouble.get(i);
+        }
+
+        return numsDouble.get(0) - parametroSoma;
     }
 
 }
