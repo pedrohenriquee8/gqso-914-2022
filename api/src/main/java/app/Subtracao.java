@@ -1,7 +1,5 @@
 package app;
 
-import java.util.Arrays;
-
 import io.jooby.annotations.*;
 
 @Path("/subtracao/{nums}*")
@@ -9,16 +7,14 @@ public class Subtracao {
 
     @GET
     public double calculoSubtracao(@PathParam String nums) {
-        double maxDouble = Arrays.stream(nums.split("/"))
-                .map(num -> Double.parseDouble(num))
-                .reduce((double) 0, Double::max);
+        String[] numsParam = nums.split("/");
+        double parametroSoma = 0;
 
-        System.out.println(maxDouble);
-        return Arrays.stream(nums.split("/"))
-                .map(num -> Double.parseDouble(num))
-                .reduce(0.0, (a, b) -> (-a) - b);
-        
+        for(int i = 1; i < numsParam.length; i++) {
+            parametroSoma += Double.parseDouble(numsParam[i]);
+        }
+
+        return Double.parseDouble(numsParam[0]) - parametroSoma;
     }
 
 }
-
