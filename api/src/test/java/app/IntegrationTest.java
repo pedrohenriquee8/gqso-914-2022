@@ -17,16 +17,25 @@ public class IntegrationTest {
   static OkHttpClient client = new OkHttpClient();
 
   @Test
-  public void shouldSayHi(int serverPort) throws IOException {
+  public void multiplicacaoIntegrationTest(int serverPort) throws IOException {
     Request req = new Request.Builder()
-        .url("http://localhost:" + serverPort)
+        .url("http://localhost/:" + serverPort + "/multiplicacao/3/5/3")
         .build();
 
     try (Response rsp = client.newCall(req).execute()) {
-      assertEquals(
-          "Bem-vindo(a) a calculadora API, desenvolvida pelos discentes: Ewerton Barboza, Pedro Henrique e Pedro Vinícius.",
-          rsp.body().string());
+      assertEquals("45.0", rsp.body().string());
       assertEquals(StatusCode.OK.value(), rsp.code());
+    }
+  }
+
+  @Test
+  public void multiplicacaoIntegrationTestError(int serverPort) throws IOException {
+    Request req = new Request.Builder()
+        .url("http://localhost/:" + serverPort + "/multiplicacao/2a0/2b0/2c0")
+        .build();
+
+    try (Response rsp = client.newCall(req).execute()) {
+      assertEquals(StatusCode.BAD_REQUEST.value(), rsp.code());
     }
   }
 }
