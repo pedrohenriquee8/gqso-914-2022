@@ -17,6 +17,22 @@ public class IntegrationTest {
   static OkHttpClient client = new OkHttpClient();
 
   @Test
+  public void somaIntegrationTest(int serverPort) throws IOException {
+    Request req = new Request.Builder()
+        .url("http://localhost:" + serverPort + "/soma/20/20/20")
+        .build();
+
+    try (Response rsp = client.newCall(req).execute()) {
+      assertEquals("60.0", rsp.body().string());
+    }
+
+  @Test
+  public void somaIntegrationTestError(int serverPort) throws IOException {
+    Request req = new Request.Builder()
+        .url("http://localhost:" + serverPort + "/soma/2a0/2b0/2c0")
+        .build();
+  }
+
   public void multiplicacaoIntegrationTest(int serverPort) throws IOException {
     Request req = new Request.Builder()
         .url("http://localhost/:" + serverPort + "/multiplicacao/3/5/3")
@@ -28,7 +44,6 @@ public class IntegrationTest {
     }
   }
 
-  @Test
   public void multiplicacaoIntegrationTestError(int serverPort) throws IOException {
     Request req = new Request.Builder()
         .url("http://localhost/:" + serverPort + "/multiplicacao/2a0/2b0/2c0")
