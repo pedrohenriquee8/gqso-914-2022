@@ -26,11 +26,37 @@ public class IntegrationTest {
       assertEquals("60.0", rsp.body().string());
     }
 
+  }
+
   @Test
   public void somaIntegrationTestError(int serverPort) throws IOException {
     Request req = new Request.Builder()
         .url("http://localhost:" + serverPort + "/soma/2a0/2b0/2c0")
         .build();
+  }
+
+  @Test
+  public void subtracaoIntegrationTest(int serverPort) throws IOException {
+    Request req = new Request.Builder()
+        .url("http://localhost:" + serverPort + "/subtracao/40/30/10")
+        .build();
+
+    try (Response rsp = client.newCall(req).execute()) {
+      assertEquals("0.0", rsp.body().string());
+    }
+
+  }
+
+  @Test
+  public void subtracaoIntegrationTestErro(int serverPort) throws IOException {
+    Request req = new Request.Builder()
+        .url("http://localhost:" + serverPort + "/subtracao/4a/30/1aa")
+        .build();
+
+    try (Response rsp = client.newCall(req).execute()) {
+      assertEquals(StatusCode.BAD_REQUEST.value(), rsp.code());
+    }
+
   }
 
   public void multiplicacaoIntegrationTest(int serverPort) throws IOException {
@@ -42,6 +68,7 @@ public class IntegrationTest {
       assertEquals("45.0", rsp.body().string());
       assertEquals(StatusCode.OK.value(), rsp.code());
     }
+
   }
 
   public void multiplicacaoIntegrationTestError(int serverPort) throws IOException {
@@ -52,5 +79,7 @@ public class IntegrationTest {
     try (Response rsp = client.newCall(req).execute()) {
       assertEquals(StatusCode.BAD_REQUEST.value(), rsp.code());
     }
+
   }
+
 }
