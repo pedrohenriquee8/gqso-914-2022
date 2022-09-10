@@ -17,16 +17,35 @@ public class IntegrationTest {
   static OkHttpClient client = new OkHttpClient();
 
   @Test
+  public void somaIntegrationTest(int serverPort) throws IOException {
+    Request req = new Request.Builder()
+        .url("http://localhost:" + serverPort + "/soma/20/20/20")
+        .build();
+
+    try (Response rsp = client.newCall(req).execute()) {
+      assertEquals("60.0", rsp.body().string());
+    }
+
+  }
+
+  @Test
+  public void somaIntegrationTestError(int serverPort) throws IOException {
+    Request req = new Request.Builder()
+        .url("http://localhost:" + serverPort + "/soma/2a0/2b0/2c0")
+        .build();
+  }
+
+  @Test
   public void subtracaoIntegrationTest(int serverPort) throws IOException {
     Request req = new Request.Builder()
         .url("http://localhost:" + serverPort + "/subtracao/40/30/10")
         .build();
 
     try (Response rsp = client.newCall(req).execute()) {
-      assertEquals("0.0",rsp.body().string());
-      assertEquals(StatusCode.OK.value(), rsp.code());
+      assertEquals("0.0", rsp.body().string());
     }
-  } 
+
+  }
 
   @Test
   public void subtracaoIntegrationTestErro(int serverPort) throws IOException {
@@ -37,5 +56,31 @@ public class IntegrationTest {
     try (Response rsp = client.newCall(req).execute()) {
       assertEquals(StatusCode.BAD_REQUEST.value(), rsp.code());
     }
+
   }
+
+  public void multiplicacaoIntegrationTest(int serverPort) throws IOException {
+    Request req = new Request.Builder()
+        .url("http://localhost/:" + serverPort + "/multiplicacao/3/5/3")
+        .build();
+
+    try (Response rsp = client.newCall(req).execute()) {
+      assertEquals("45.0", rsp.body().string());
+      assertEquals(StatusCode.OK.value(), rsp.code());
+    }
+
+  }
+
+  @Test
+  public void multiplicacaoIntegrationTestError(int serverPort) throws IOException {
+    Request req = new Request.Builder()
+        .url("http://localhost/:" + serverPort + "/multiplicacao/2a0/2b0/2c0")
+        .build();
+
+    try (Response rsp = client.newCall(req).execute()) {
+      assertEquals(StatusCode.BAD_REQUEST.value(), rsp.code());
+    }
+
+  }
+
 }
